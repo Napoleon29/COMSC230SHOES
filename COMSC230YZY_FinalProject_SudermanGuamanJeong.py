@@ -5,7 +5,7 @@ Created on Fri Nov 29 13:18:13 2024
 @author: Napoleon Suderman, Gavin Jeong, Matt Guaman
 """
 
-#merge interest data into one csv----------------------------------------------
+# Merge interest data into one csv----------------------------------------------
 """
 # List of file paths
 file_paths = [
@@ -45,7 +45,7 @@ merged_df.to_csv('merged_interestdates.csv', index=False)
 
 
 
-#read, clean, merge interest csv and original csv------------------------------
+# Read, clean, merge interest csv and original csv------------------------------
 """
 import pandas as pd
 import numpy as np
@@ -58,7 +58,7 @@ df = pd.read_csv('StockX_Data.csv', delimiter=",")
 df['Order Date'] = pd.to_datetime(df['Order Date'])
 df['Release Date'] = pd.to_datetime(df['Release Date'])
 
-#new column Days since release
+# New column Days since release
 df['Days_since_release'] = (df['Order Date'] - df['Release Date']).dt.days
 
 # Filter rows where dates are only yeezy
@@ -94,7 +94,7 @@ merged_data.drop('Day', axis=1, inplace=True)
 
 
 
-#remove some outliers
+# Remove some outliers
 merged_data = merged_data[(merged_data['Sale Price'] >= 220) & (merged_data['Sale Price'] <= 700)]
 merged_data = merged_data[(merged_data['Interest'] <= 90) & (merged_data['Interest'] > 10)]
 merged_data = merged_data[(merged_data['Shoe Size'] <= 13) & (merged_data['Shoe Size'] > 5)]
@@ -107,7 +107,7 @@ merged_data['Shoe Size'] = np.floor(merged_data['Shoe Size'])
 # Display the resulting DataFrame
 print(merged_data)
 
-#save as csv
+# Save as csv
 #merged_data.to_csv('smerged_data.csv', index=False)
 """
 
@@ -120,7 +120,7 @@ import pandas as pd
 merged_data = pd.read_csv('smerged_data.csv', delimiter=",")
 
 
-#Plot histograms to find outliers----------------------------------------------
+# Plot histograms to find outliers----------------------------------------------
 import matplotlib.pyplot as plt
 
 # Plot histograms for numerical features
@@ -162,7 +162,7 @@ plt.show()
 
 
 
-##Regression methods------------------------------------------------------------
+# Regression methods------------------------------------------------------------
 
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
@@ -258,7 +258,7 @@ plt.show()
 
 
 
-#print mse's
+# Print mse's
 print("\n\n")
 print("LinearRegression Mean Squared Error:", mse_lr)
 print("Decision Tree Mean Squared Error:", mse_dt)
