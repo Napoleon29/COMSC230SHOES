@@ -180,7 +180,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_
 
 
 
-#linear regression---------------------------------------------
+# Linear regression---------------------------------------------
 from sklearn.linear_model import LinearRegression
 
 # Model Training
