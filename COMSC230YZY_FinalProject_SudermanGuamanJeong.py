@@ -4,52 +4,10 @@ Created on Fri Nov 29 13:18:13 2024
 
 @author: Napoleon Suderman, Gavin Jeong, Matt Guaman
 """
-
-# Merge interest data into one csv----------------------------------------------
-"""
-# List of file paths
-file_paths = [
-    "C:\\Users\\guama\\Desktop\\DataScience_FinalProject\\interest data csvs\\nov17.csv",
-    "C:\\Users\\guama\\Desktop\\DataScience_FinalProject\\interest data csvs\\nov18.csv",
-    "C:\\Users\\guama\\Desktop\\DataScience_FinalProject\\interest data csvs\\oct17.csv",
-    "C:\\Users\\guama\\Desktop\\DataScience_FinalProject\\interest data csvs\\oct18.csv",
-    "C:\\Users\\guama\\Desktop\\DataScience_FinalProject\\interest data csvs\\sept17.csv",
-    "C:\\Users\\guama\\Desktop\\DataScience_FinalProject\\interest data csvs\\sept18.csv",
-    "C:\\Users\\guama\\Desktop\\DataScience_FinalProject\\interest data csvs\\april18.csv",
-    "C:\\Users\\guama\\Desktop\\DataScience_FinalProject\\interest data csvs\\august18.csv",
-    "C:\\Users\\guama\\Desktop\\DataScience_FinalProject\\interest data csvs\\dec17.csv",
-    "C:\\Users\\guama\\Desktop\\DataScience_FinalProject\\interest data csvs\\dec18.csv",
-    "C:\\Users\\guama\\Desktop\\DataScience_FinalProject\\interest data csvs\\feb18.csv",
-    "C:\\Users\\guama\\Desktop\\DataScience_FinalProject\\interest data csvs\\feb19.csv",
-    "C:\\Users\\guama\\Desktop\\DataScience_FinalProject\\interest data csvs\\jan18.csv",
-    "C:\\Users\\guama\\Desktop\\DataScience_FinalProject\\interest data csvs\\jan19.csv",
-    "C:\\Users\\guama\\Desktop\\DataScience_FinalProject\\interest data csvs\\july18.csv",
-    "C:\\Users\\guama\\Desktop\\DataScience_FinalProject\\interest data csvs\\june18.csv",
-    "C:\\Users\\guama\\Desktop\\DataScience_FinalProject\\interest data csvs\\march18.csv",
-    "C:\\Users\\guama\\Desktop\\DataScience_FinalProject\\interest data csvs\\may18.csv"
-]
-
-# Read CSV files into dataframes
-dfs = [pd.read_csv(file) for file in file_paths]
-
-# Merge dataframes
-merged_df = pd.concat(dfs, ignore_index=True)
-merged_df.fillna(value=0, inplace=True)# Filling missing values with zeros
-
-# Save Merged Dataframe
-merged_df.to_csv('merged_interestdates.csv', index=False)
-
-"""
-
-
-
-
-
 # Read, clean, merge interest csv and original csv------------------------------
 """
 import pandas as pd
 import numpy as np
-
 
 # Read stockX data
 df = pd.read_csv('StockX_Data.csv', delimiter=",")
@@ -66,9 +24,6 @@ yeezydf = df[df['Brand'] == ' Yeezy']
 
 # Convert 'Sale Price' column to numerical values
 yeezydf.loc[:, 'Sale Price'] = yeezydf['Sale Price'].replace('[\$,]', '', regex=True).astype(float)
-
-
-
 
 
 # Read merged interest data
@@ -109,7 +64,11 @@ print(merged_data)
 
 # Save as csv
 #merged_data.to_csv('smerged_data.csv', index=False)
+
 """
+
+
+
 
 
 import pandas as pd
@@ -228,41 +187,6 @@ plt.grid(True)
 plt.show()
 
 
-
-
-
-
-# Random Forest Regression------------------------------------------
-
-from sklearn.ensemble import RandomForestRegressor
-
-# Random Forest Regressor
-rf_model = RandomForestRegressor()
-rf_model.fit(X_train, y_train)
-
-# Model Evaluation
-y_pred = rf_model.predict(X_test)
-mse_rf = mean_squared_error(y_test, y_pred)
-
-
-# Plot actual vs predicted sale prices
-plt.figure(figsize=(10, 6))
-plt.scatter(y_test, y_pred, color='blue', label='Actual vs Predicted')
-plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], 'k--', lw=2, label='Ideal Fit')
-plt.xlabel('Actual Sale Price')
-plt.ylabel('Predicted Sale Price')
-plt.title('Actual vs Predicted Sale Prices (Random Forest)')
-plt.legend()
-plt.grid(True)
-plt.show()
-
-
-
-# Print mse's
-print("\n\n")
-print("LinearRegression Mean Squared Error:", mse_lr)
-print("Decision Tree Mean Squared Error:", mse_dt)
-print("Random Forest Mean Squared Error:", mse_rf)
 
 
 
